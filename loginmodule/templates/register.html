@@ -4,16 +4,24 @@
 {% if form.errors %}
     <p class="error">Invalid Username or Password</p>
 {% endif %}
-<form action="/loginmodule/auth/" method="POST">
+<form action="/loginmodule/register/" method="POST">
     {% csrf_token %}
-    <h2>Login</h2><hr>
+    <h2>Register</h2><hr>
     <br>
     <label class="text" for="username">User Name : </label>
     <input type="text" name="username" value="" id="username" required><br><br>
+
+    <label class="text" for="email">Email : </label>
+    <input type="text" name="email" value="" id="email" required><br><br>
+
+    <label class="text" for="address">Address : </label>
+    <input type="text" name="address" value="" id="address" required><br><br>
+
     <label class="text" for="password">Password : </label>
     <input type="password" name="password" value="" id="password" required><br><br>
-    <input class="text" type="submit" value="login">
-    New User? <a href="/loginmodule/registeruser/">register</a>
+
+    <input class="text" type="submit" value="Register">
+    Already registered? <a href="/loginmodule/login/">Login</a>
 </form>
 
 {% endblock %}

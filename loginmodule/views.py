@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import auth
+from django.contrib.auth.models import User
 from django.template.context_processors import csrf
+from .models import customer
 # Create your views here.
 
 def login(request):
@@ -19,6 +21,19 @@ def auth_view(request):
         return HttpResponseRedirect('/loginmodule/loggedin/')
     else:
         return HttpResponseRedirect('/loginmodule/invalidlogin/')
+
+def register_user(request):
+    return render(request, 'register.html')
+
+def register(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    email = request.POST.get('email', '')
+    address = request.POST.get('address', '')
+    cust = customer(username = username, address = address, email = email, password = password)
+    cust.save()
+    user = User.objects.create_user(username = username, password = password)
+    return HttpResponseRedirect('/loginmodule/login/')
 
 def loggedin(request):
     return render(request, 'loggedin.html', {"full_name":request.user.username})
