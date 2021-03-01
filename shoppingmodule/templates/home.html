@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!------------------navigation-------------------->
+    <div class="navigation">
+        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <div class="menu">
+            <ul>
+                <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
+                <li><a href="/loginmodule/login/">Login</a></li>
+                <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!------------------slides-------------------->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'shoppingmodule/images/s1.jpeg' %}" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'shoppingmodule/images/s2.jpeg' %}" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'shoppingmodule/images/s4.jpg' %}" class="d-block w-100">
+            </div>
+        </div>
+    </div>
+    <br><hr><br>
+    <!------------------products-------------------->
+    <section class="categories">
+        <div class="container">
+            <div class="row">
+                <!----------------------inserting product from database---------------------->
+                {% for prod in prods %}
+                <div class="col-md-3">
+                    <div class="product-top">
+                        <img src="{% static prod.image %}">
+                        <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Buy now">
+                            <a href="#"><i class="fa fa-shopping-bag"></i></a>
+                        </button>
+                        
+                        <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Add to cart">
+                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                        </button>
+                    </div>
+                    <br><br>
+                    <div class="product-bottom">
+                        <b>{{prod.description}}</b>
+                        <h5>₹{{prod.price}}</h5>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+{% endblock %}

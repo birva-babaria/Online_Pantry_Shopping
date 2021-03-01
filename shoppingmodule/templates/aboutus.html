@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!------------------navigation-------------------->
+    <div class="navigation">
+        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <div class="menu">
+            <ul>
+                <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
+                <li><a href="/loginmodule/login/">Login</a></li>
+                <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <div class="text">
+            <b>
+                GOCERY removes from you the routinely repetitive tasks of grocery shopping and allows you to focus your time on what really matters.
+            </b>
+        </div>
+        <div class="inner-container">
+            <img src="{% static 'shoppingmodule/images/cover.jpg' %}">
+        </div>   
+        <div class="footer">
+            <h3>Contact Us:</h3>
+            <b>Email:<a href="mailto:abc@example.com">Send mail</a></b>
+            <br><b>Phone no.:<a href="tel:+13115552368">(311)55-2368</a></b>
+        </div> 
+    </div>
+{% endblock %}
