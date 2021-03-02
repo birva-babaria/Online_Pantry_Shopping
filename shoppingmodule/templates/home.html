@@ -7,9 +7,15 @@
         <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
         <div class="menu">
             <ul>
-                <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
-                <li><a href="/loginmodule/login/">Login</a></li>
-                <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% if request.session.cust_id %}
+                    <li><a href="">Welcome {{request.session.cust_name}},</a></li>
+                    <li><a href="/loginmodule/logout/">Logout</a></li>
+                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% else %}
+                    <li><a href="/loginmodule/login/">Login</a></li>
+                    <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
+                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

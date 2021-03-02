@@ -18,7 +18,10 @@ def auth_view(request):
     user = auth.authenticate(username=username,password=password)
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/loginmodule/loggedin/')
+        c = customer.objects.get(username=request.POST['username'])
+        request.session['cust_id'] = c.cust_id
+        request.session['cust_name'] = c.username
+        return HttpResponseRedirect('/shoppingmodule/')
     else:
         return HttpResponseRedirect('/loginmodule/invalidlogin/')
 
@@ -42,5 +45,7 @@ def invalidlogin(request):
     return render(request, 'invalidlogin.html')
 
 def logout(request):
+    del request.session['cust_id']
+    del request.session['cust_name']
     auth.logout(request)
     return render(request, 'logout.html')
