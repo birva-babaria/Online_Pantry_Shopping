@@ -9,6 +9,7 @@
             <ul>
                 {% if request.session.cust_id %}
                     <li><a href="">Welcome {{request.session.cust_name}},</a></li>
+                    <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-bag"></i></a></li>
                     <li><a href="/loginmodule/logout/">Logout</a></li>
                     <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
                 {% else %}
@@ -49,7 +50,7 @@
                         </button>
                         
                         <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Add to cart">
-                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="/shoppingmodule/addtocart?p_id={{prod.prod_id}}"><i class="fa fa-shopping-cart"></i></a>
                         </button>
                     </div>
                     <br><br>

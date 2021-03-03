@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!------------------navigation-------------------->
+    <div class="navigation">
+        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <div class="menu">
+            <ul>
+                {% if request.session.cust_id %}
+                    <li><a href="">Welcome {{request.session.cust_name}},</a></li>
+                    <li><a href="/loginmodule/logout/">Logout</a></li>
+                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% else %}
+                    <li><a href="/loginmodule/login/">Login</a></li>
+                    <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
+                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+<br>
+<h1>Your cart!!</h1><hr>
+
+<!------------------products-------------------->
+<section class="categories">
+    <div class="container">
+        <div class="row">
+            <!----------------------inserting product from database---------------------->
+            {% if prods %}
+                {% for prod in prods %}
+                <div class="col-md-3">
+                    <div class="product-top">
+                        <img src="{% static prod.cart_prod_id.image %}">
+                    </div>
+                    <br>
+                    <div class="product-bottom">
+                        <b>{{prod.cart_prod_id.description}}</b>
+                        <h5>₹{{prod.cart_prod_id.price}}</h5>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <h2>Your cart is empty!!</h2>
+                <h4>Click <a href="/shoppingmodule/">here</a> to continue shopping :)</h4>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
