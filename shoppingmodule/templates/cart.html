@@ -36,6 +36,12 @@
                     <div class="product-bottom">
                         <b>{{prod.cart_prod_id.description}}</b>
                         <h5>₹{{prod.cart_prod_id.price}}</h5>
+                        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+                        <div class="w3-container">
+                            <button class="w3-button w3-grey w3-round">
+                                <a class="line" href="/shoppingmodule/removefromcart?p_id={{prod.cart_prod_id.prod_id}}">Remove</i></a>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -46,4 +52,8 @@
         </div>
     </div>
 </section>
+<hr>
+<button class="w3-button w3-black w3-round w3-block">
+    <a  class="line" href="#">Place Order</i></a>
+</button>
 {% endblock %}

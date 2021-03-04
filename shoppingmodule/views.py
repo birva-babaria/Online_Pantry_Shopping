@@ -26,3 +26,10 @@ def viewcart(request):
     prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
     return render(request, 'cart.html', {'prods': prods})
 
+def removefromcart(request):
+    p_id = request.GET['p_id']
+    prod = shoppingcart.objects.get(cart_prod_id = product.objects.get(prod_id = p_id))
+    prod.delete()
+    prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+    return render(request, 'cart.html', {'prods': prods})
+

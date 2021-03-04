@@ -45,13 +45,23 @@
                 <div class="col-md-3">
                     <div class="product-top">
                         <img src="{% static prod.image %}">
-                        <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Buy now">
-                            <a href="#"><i class="fa fa-shopping-bag"></i></a>
-                        </button>
-                        
-                        <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Add to cart">
-                            <a href="/shoppingmodule/addtocart?p_id={{prod.prod_id}}"><i class="fa fa-shopping-cart"></i></a>
-                        </button>
+                        {% if request.session.cust_id %}
+                            <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Buy now">
+                                <a href="#"><i class="fa fa-shopping-bag"></i></a>
+                            </button>
+                            
+                            <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Add to cart">
+                                <a href="/shoppingmodule/addtocart?p_id={{prod.prod_id}}"><i class="fa fa-shopping-cart"></i></a>
+                            </button>
+                        {% else %}
+                            <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Buy now">
+                                <a href="/loginmodule/login/"><i class="fa fa-shopping-bag"></i></a>
+                            </button>
+                            
+                            <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Add to cart">
+                                <a href="/loginmodule/login/"><i class="fa fa-shopping-cart"></i></a>
+                            </button>
+                        {% endif %}
                     </div>
                     <br><br>
                     <div class="product-bottom">
