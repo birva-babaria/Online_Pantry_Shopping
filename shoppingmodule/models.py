@@ -5,7 +5,7 @@ from loginmodule.models import customer
 class product(models.Model):
     prod_id = models.AutoField(primary_key=True)
     description = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=6,decimal_places=2)
+    price = models.FloatField()
     image = models.CharField(max_length=100)
 
 class shoppingcart(models.Model):

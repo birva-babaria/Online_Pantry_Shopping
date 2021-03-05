@@ -52,8 +52,15 @@
         </div>
     </div>
 </section>
-<hr>
-<button class="w3-button w3-black w3-round w3-block">
-    <a  class="line" href="#">Place Order</i></a>
-</button>
+{% if prods %}
+    <hr>
+    <div class="align">
+        <h6>Cart price: ₹{{price}}</h6>
+        <h6>Tax: ₹{{TAX}}</h6>
+        <strong><h4>Subtotal: ₹{{subtotal}}</h4></strong>
+        <button class="w3-button w3-black w3-round w3-block">
+            <a  class="line" href="/shoppingmodule/cartbill/">Place Order</i></a>
+        </button>
+    </div>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!------------------navigation-------------------->
+    <div class="navigation">
+        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <div class="menu">
+            <ul>
+                {% if request.session.cust_id %}
+                    <li><a href="">Welcome {{request.session.cust_name}},</a></li>
+                    <li><a href="/loginmodule/logout/">Logout</a></li>
+                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% else %}
+                    <li><a href="/loginmodule/login/">Login</a></li>
+                    <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
+                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+<br>
+<h1>Order Details!</h1>
+<div class="bill">
+    <b><h4>Username:  </b>{{request.session.cust_name}}</h4>
+    <b><h4>Email:  </b>{{cust.email}}</h4>
+    <b><h4>Shipping Address:  </b>{{cust.address}}</h4>
+    <b><h4>Products  :</b></h4>
+    <ul>
+    <li><h5>{{prod.description}} --> ₹{{prod.price}}</h5></li>
+    </ul>
+    <hr>
+    <h6>*free shipping</h6>
+    <b><h5>Total price: </b>₹{{prod.price}}</h5>
+    <b><h5>Tax: </b>₹{{TAX}}</h5>
+    <b><h4>Subtotal: </b>₹{{subtotal}}</h4><br>
+    <button class="w3-button w3-black w3-round w3-block">
+        <a  class="line" href="#">Confirm Order</i></a>
+    </button>
+</div>
+{% endblock %}

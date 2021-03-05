@@ -138,4 +138,21 @@ body
 	font-size: 18px;
 }
 
+.align
+{
+	border: 2px solid #f1f1f1;
+}
+
+/*-----------Cart Bill---------*/
+
+.bill
+{
+	margin: auto;
+	border: 2px solid #554e4e;
+	text-align: left;
+	width: 50%;
+	padding: 5px 5px;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
 
