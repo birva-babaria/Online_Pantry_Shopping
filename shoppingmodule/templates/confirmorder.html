@@ -20,22 +20,11 @@
         </div>
     </div>
 <br>
-<h1>Order Details!</h1>
-<div class="bill">
-    <b><h4>Username:  </b>{{request.session.cust_name}}</h4>
-    <b><h4>Email:  </b>{{cust.email}}</h4>
-    <b><h4>Shipping Address:  </b>{{cust.address}}</h4>
-    <b><h4>Products  :</b></h4>
-    <ul>
-    <li><h5>{{prod.description}} --> ₹{{prod.price}}</h5></li>
-    </ul>
-    <hr>
-    <h6>*free shipping</h6>
-    <b><h5>Total price: </b>₹{{prod.price}}</h5>
-    <b><h5>Tax: </b>₹{{TAX}}</h5>
-    <b><h4>Subtotal: </b>₹{{subtotal}}</h4><br>
-    <button class="w3-button w3-black w3-round w3-block">
-        <a  class="line" href="/shoppingmodule/confirmorderB?p_id={{prod.prod_id}}">Confirm Order</i></a>
-    </button>
+<h1>Your order is confirmed :)</h1>
+<h5>Please check your orders for more information.</h5>
+<br>
+<img  width="300" height="300" src="{% static 'shoppingmodule/images/confirmorder.png' %}">
+<br><br>
+<h4>Click <a href="/shoppingmodule/">here</a> to continue shopping :)</h4>
 </div>
 {% endblock %}

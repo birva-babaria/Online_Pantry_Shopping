@@ -4,8 +4,10 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.template.context_processors import csrf
-from shoppingmodule.models import product,shoppingcart
+from shoppingmodule.models import product,shoppingcart,orderitems,order
 from loginmodule.models import customer
+import datetime
+from django.utils import timezone
 
 # Create your views here.
 
@@ -32,8 +34,8 @@ def viewcart(request):
     return render(request, 'cart.html', {'prods': prods, 'price': price, 'TAX': TAX, 'subtotal': subtotal})
 
 def removefromcart(request):
-    p_id = request.GET['p_id']
-    prod = shoppingcart.objects.get(cart_prod_id = product.objects.get(prod_id = p_id))
+    c_id = request.GET['c_id']
+    prod = shoppingcart.objects.get(cart_id = c_id)
     prod.delete()
     return HttpResponseRedirect('/shoppingmodule/viewcart/')
 
@@ -68,3 +70,26 @@ def cartbill(request):
         'subtotal': subtotal
     }
     return render(request, 'cartbill.html', context)
+
+# def confirmorder(request):
+#     o = order(order_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+#     o.save()
+#     order = order.objects.latest('ordermodel_id')
+#     prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+#     for prod in prods:
+#         id = prod.cart_prod_id.prod_id
+#         o_item = orderitem(orderitem_ordermodel_id=order, orderitem_prod_id=product.objects.get(prod_id=id))
+#         o_item.save()
+#     for prod in prods:
+#         prod.delete()
+#     return render(request, 'confirmorder.html')
+
+# def confirmorderB(request):
+#     o = ordermodel(ordermodel_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+#     o.save()
+#     order = ordermodel.objects.last()
+#     p_id = request.GET['p_id']
+#     prod = product.objects.get(prod_id = p_id)
+#     o_item = orderitem(orderitem_ordermodel_id=order, orderitem_prod_id=prod)
+#     o_item.save()
+#     return render(request, 'confirmorder.html')
