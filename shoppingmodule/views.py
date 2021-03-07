@@ -71,6 +71,32 @@ def cartbill(request):
     }
     return render(request, 'cartbill.html', context)
 
+def confirmorder(request):
+    o = order(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']))
+    o.save()
+    ord = order.objects.latest('order_id')
+    prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+    for prod in prods:
+        id = prod.cart_prod_id.prod_id
+        o_item = orderitems(orderitems_order_id=ord, orderitems_prod_id=product.objects.get(prod_id=id))
+        o_item.save()
+    for prod in prods:
+        prod.delete()
+    return HttpResponseRedirect('/shoppingmodule/viewconfirmorder/')
+
+def confirmorderb(request):
+    o = order(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']))
+    o.save()
+    ord = order.objects.latest('order_id')
+    p_id = request.GET['p_id']
+    prod = product.objects.get(prod_id = p_id)
+    o_item = orderitems(orderitems_order_id=ord, orderitems_prod_id=prod)
+    o_item.save() 
+    return HttpResponseRedirect('/shoppingmodule/viewconfirmorder/')
+    
+def viewconfirmorder(request):
+    return render(request, 'confirmorder.html')
+    
 # def confirmorder(request):
 #     o = order(order_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
 #     o.save()
