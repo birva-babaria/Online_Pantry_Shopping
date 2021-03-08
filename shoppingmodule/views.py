@@ -96,26 +96,42 @@ def confirmorderb(request):
     
 def viewconfirmorder(request):
     return render(request, 'confirmorder.html')
-    
-# def confirmorder(request):
-#     o = order(order_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
-#     o.save()
-#     order = order.objects.latest('ordermodel_id')
-#     prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
-#     for prod in prods:
-#         id = prod.cart_prod_id.prod_id
-#         o_item = orderitem(orderitem_ordermodel_id=order, orderitem_prod_id=product.objects.get(prod_id=id))
-#         o_item.save()
-#     for prod in prods:
-#         prod.delete()
-#     return render(request, 'confirmorder.html')
 
-# def confirmorderB(request):
-#     o = ordermodel(ordermodel_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
-#     o.save()
-#     order = ordermodel.objects.last()
-#     p_id = request.GET['p_id']
-#     prod = product.objects.get(prod_id = p_id)
-#     o_item = orderitem(orderitem_ordermodel_id=order, orderitem_prod_id=prod)
-#     o_item.save()
-#     return render(request, 'confirmorder.html')
+def viewprofile(request):
+    cust = customer.objects.get(cust_id = request.session['cust_id'])
+    context = {
+        'cust': cust
+    }
+    return render(request, 'profile.html', context)
+
+def changeaddress(request):
+    return render(request, 'changeaddress.html')
+
+def addnewaddress(request):
+    addr = request.POST['newaddress']
+    cust = customer.objects.get(cust_id = request.session['cust_id'])
+    cust.address = addr
+    cust.save()
+    return HttpResponseRedirect('/shoppingmodule/viewprofile/')
+
+def changepassword(request):
+    return render(request, 'changepassword.html')
+
+def updatepassword(request):
+    oldpass = request.POST['oldpass']
+    newpass = request.POST['newpass']
+    cnewpass = request.POST['cnewpass']
+    cust = customer.objects.get(cust_id=request.session['cust_id'])
+    currpass = cust.password
+    if(oldpass != currpass):
+        return render(request, 'changepassword.html', {'msg': "*Old password is incorrect"})
+    elif(newpass != cnewpass):
+        return render(request, 'changepassword.html', {'msg': "*New passwords does not match"})
+    else:
+        user = User.objects.get(username=request.session['cust_name'])
+        user.set_password(newpass)
+        user.save()
+        cust = customer.objects.get(cust_id=request.session['cust_id'])
+        cust.password = newpass
+        cust.save()
+        return HttpResponseRedirect('/shoppingmodule/viewprofile/')

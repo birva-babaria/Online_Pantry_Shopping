@@ -8,7 +8,7 @@
         <div class="menu">
             <ul>
                 {% if request.session.cust_id %}
-                    <li><a href="">Welcome {{request.session.cust_name}},</a></li>
+                    <li><a href="/shoppingmodule/viewprofile/">Welcome {{request.session.cust_name}},</a></li>
                     <li><a href="/shoppingmodule/viewcart"><i class="fa fa-shopping-cart"></i></a></li>
                     <li><a href="/loginmodule/logout/">Logout</a></li>
                     <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>

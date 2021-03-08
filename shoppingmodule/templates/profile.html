@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!------------------navigation-------------------->
+    <div class="navigation">
+        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <div class="menu">
+            <ul>
+                <li><a href="/shoppingmodule/viewprofile/">Welcome {{request.session.cust_name}},</a></li>
+                <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="/loginmodule/logout/">Logout</a></li>
+                <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="topimg">
+            <h1>My Profile</h1>
+        </div>
+        <div class="edit">
+            <i class="fa fa-user-circle-o" alt="html5"></i>
+        </div>
+        <div class="information">
+            <table style="border: 1px solid rgb(235, 230, 230);">
+                <tr>
+                    <td><h5>Username:</h5></td>
+                    <td>{{cust.username}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h5>Email:</h5></td>
+                    <td>{{cust.email}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h5>Address:</h5></td>
+                    <td>{{cust.address}}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="button">
+            <label><button class="btn btn-default"><a href="#">View Previous Orders</a></button></label>
+            <label><button class="btn btn-default"><a href="/shoppingmodule/changeaddress/">Change Shipping Address</a></button></label><br><br>
+            <label><button class="btn btn-default"><a href="/shoppingmodule/changepassword/">Change Password</a></button></label>
+         </div>
+    </div>
+
+{% endblock %}
