@@ -72,10 +72,15 @@ def cartbill(request):
     return render(request, 'cartbill.html', context)
 
 def confirmorder(request):
-    o = order(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']))
+    prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+    subtotal = 0.0
+    for prod in prods:
+        subtotal = subtotal + prod.cart_prod_id.price
+    subtotal = subtotal + 19.05
+    o = order(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']), price=subtotal)
     o.save()
     ord = order.objects.latest('order_id')
-    prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
+    
     for prod in prods:
         id = prod.cart_prod_id.prod_id
         o_item = orderitems(orderitems_order_id=ord, orderitems_prod_id=product.objects.get(prod_id=id))
@@ -85,11 +90,12 @@ def confirmorder(request):
     return HttpResponseRedirect('/shoppingmodule/viewconfirmorder/')
 
 def confirmorderb(request):
-    o = order(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']))
-    o.save()
-    ord = order.objects.latest('order_id')
     p_id = request.GET['p_id']
     prod = product.objects.get(prod_id = p_id)
+    subtotal = prod.price + 19.05
+    o = order(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']), price=subtotal)
+    o.save()
+    ord = order.objects.latest('order_id')
     o_item = orderitems(orderitems_order_id=ord, orderitems_prod_id=prod)
     o_item.save() 
     return HttpResponseRedirect('/shoppingmodule/viewconfirmorder/')
@@ -135,3 +141,18 @@ def updatepassword(request):
         cust.password = newpass
         cust.save()
         return HttpResponseRedirect('/shoppingmodule/viewprofile/')
+
+def vieworders(request):
+    ords = order.objects.all().filter(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']))
+    date = timezone.now()
+    for o in ords:
+        if(date >= o.deliverdate):
+            o.status = "delivered"
+    items = []
+    for o in ords:
+        items.append(orderitems.objects.all().filter(orderitems_order_id=o))
+    mylist = zip(items,ords)
+    context = {
+        'list': mylist
+    }
+    return render(request, 'previousorders.html', context)

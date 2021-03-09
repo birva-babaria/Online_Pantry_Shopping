@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!------------------navigation-------------------->
+    <div class="navigation">
+        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <div class="menu">
+            <ul>
+                <li><a href="/shoppingmodule/viewprofile/">Welcome {{request.session.cust_name}},</a></li>
+                <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="/loginmodule/logout/">Logout</a></li>
+                <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="wrapper1">
+        <div class="topimg">
+            <h1>Order history!</h1>
+        </div>
+        <div class="information">
+            <table class="ordertable" style="border: 1px solid rgb(235, 230, 230);">
+                {% for item,ord in list %}
+                <tr>
+                    <td>
+                        {% if ord.status == "pending" %}
+                            <span class="reddot"></span><b>   {{ord.status}}</b><br><br>
+                        {% else %}
+                            <span class="greendot"></span><b>{{ord.status}}</b><br><br>
+                        {% endif %}
+                        <b>Order ID: </b>#GF0{{ord.order_id}}<br>
+                        {% for i in item %}
+                            <img  class="size" src="{% static i.orderitems_prod_id.image %}">
+                            <b>Description: </b>{{i.orderitems_prod_id.description}}<br>
+                        {% endfor %}<hr class="length">
+                        <b>Order Date: </b>{{ord.orderdate}}<br>
+                        <b>Delivery Date: </b>{{ord.deliverdate}}<br>
+                        <b>Payment mode: </b>COD<br>
+                        <b>Subtotal: </b>₹{{ord.price}}<br>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <h4>Click <a href="/shoppingmodule/">here</a> to continue shopping :)</h4>
+        <a href="/shoppingmodule/viewprofile/">Go Back</a>
+    </div>
+
+{% endblock %}

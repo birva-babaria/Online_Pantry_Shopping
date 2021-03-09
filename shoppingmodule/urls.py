@@ -1,4 +1,4 @@
-from shoppingmodule.views import viewhome,viewaboutus,addtocart,viewcart,removefromcart,buynow,cartbill,confirmorder,confirmorderb,viewconfirmorder,viewprofile,changeaddress,addnewaddress,changepassword,updatepassword
+from shoppingmodule.views import viewhome,viewaboutus,addtocart,viewcart,removefromcart,buynow,cartbill,confirmorder,confirmorderb,viewconfirmorder,viewprofile,changeaddress,addnewaddress,changepassword,updatepassword,vieworders
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 
@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^addnewaddress/$', addnewaddress, name='addnewaddress'),
     url(r'^changepassword/$', changepassword, name='changepassword'),
     url(r'^updatepassword/$', updatepassword, name='updatepassword'),
+    url(r'^vieworders/$', vieworders, name='vieworders'),
 ]

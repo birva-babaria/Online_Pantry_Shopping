@@ -223,6 +223,12 @@ body
 {
 	color:black;
 }
+.wrapper1
+{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
 /*--------information-------*/
 .information table tr:nth-child(odd) 
 {
@@ -244,7 +250,20 @@ body
 	text-align: left;
 	font-family: Arial, Helvetica, sans-serif;;
 }
-/*---------change passwprd---------*/
+.ordertable
+{
+	width: 100%;
+}
+.size
+{
+	width: 150px;
+	height: 100px;
+}
+.length
+{
+	width: 350px;
+}
+/*---------change password---------*/
 .pass-error
 {
 	color: rgb(199, 52, 52);
@@ -283,4 +302,17 @@ input[type=submit]
 {
 	margin-left: 20px;
 }
-
+.reddot {
+	height: 15px;
+	width: 15px;
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+  }
+  .greendot {
+	height: 15px;
+	width: 15px;
+	background-color: rgb(29, 236, 29);
+	border-radius: 50%;
+	display: inline-block;
+  }
