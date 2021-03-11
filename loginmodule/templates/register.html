@@ -18,6 +18,7 @@
     {% csrf_token %}
     <h2>Register</h2><hr>
     <br>
+    <p class="pass-error">{{msg}}</p><br>
     <label class="text" for="username">User Name : </label>
     <input type="text" name="username" value="" id="username" required><br><br>
 
@@ -29,6 +30,9 @@
 
     <label class="text" for="password">Password : </label>
     <input type="password" name="password" value="" id="password" required><br><br>
+
+    <label class="text" for="cpassword">Confirm Password : </label>
+    <input type="password" name="cpassword" value="" id="password" required><br><br>
 
     <input class="text" type="submit" value="Register"><br><br>
     Already registered? <a href="/loginmodule/login/">Login</a>

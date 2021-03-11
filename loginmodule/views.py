@@ -31,8 +31,14 @@ def register_user(request):
 def register(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
+    cpassword = request.POST.get('cpassword', '')
     email = request.POST.get('email', '')
     address = request.POST.get('address', '')
+    if(password != cpassword):
+        return render(request, 'register.html', {'msg': "*Passwords doesn't match"})
+    newuser = customer.objects.get(username=username)
+    if newuser is not None:
+        return render(request, 'register.html', {'msg': "*username already taken"})
     cust = customer(username = username, address = address, email = email, password = password)
     cust.save()
     user = User.objects.create_user(username = username, password = password)
