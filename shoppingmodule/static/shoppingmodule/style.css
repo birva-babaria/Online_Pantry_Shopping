@@ -27,7 +27,7 @@ body
 }
 .menu
 {
-	width: 50%;
+	width: 70%;
 	height: 57px;
 	float: right;
 }
@@ -44,6 +44,8 @@ body
 	padding: 15px 35px;
 	text-align: center;
 	cursor: pointer;
+	color: #fff;
+	font-weight: bold
 }
 .menu ul li a
 {

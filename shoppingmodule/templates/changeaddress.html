@@ -9,7 +9,8 @@
         <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
         <div class="menu">
             <ul>
-                <li><a href="/shoppingmodule/viewprofile/">Welcome {{request.session.cust_name}},</a></li>
+                <li>Welcome {{request.session.cust_name}},</li>
+                <li><a href="/shoppingmodule/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                 <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-cart"></i></a></li>
                 <li><a href="/loginmodule/logout/">Logout</a></li>
                 <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
