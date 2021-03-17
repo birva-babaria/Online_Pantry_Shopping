@@ -148,11 +148,29 @@ def vieworders(request):
     for o in ords:
         if(date >= o.deliverdate):
             o.status = "delivered"
+            o.save()
     items = []
     for o in ords:
         items.append(orderitems.objects.all().filter(orderitems_order_id=o))
     mylist = zip(items,ords)
-    context = {
+    if 'cancel' in request.session:
+        context = {
+            'list': mylist,
+            'cancelmsg': "Order cancelled successfully"
+        }
+        del request.session['cancel']
+    else:
+        context = {
         'list': mylist
-    }
+        }
     return render(request, 'previousorders.html', context)
+
+def cancelorder(request):
+    oid = request.GET['o']
+    ord = order.objects.get(order_id=oid)
+    orditem = orderitems.objects.all().filter(orderitems_order_id=ord)
+    for o in orditem:
+        o.delete()
+    ord.delete()
+    request.session['cancel'] = "cancelled"
+    return HttpResponseRedirect('/shoppingmodule/vieworders/')

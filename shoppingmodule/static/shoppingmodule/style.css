@@ -318,3 +318,44 @@ input[type=submit]
 	border-radius: 50%;
 	display: inline-block;
   }
+
+  .cancel-btn {
+	background-color: #4d4141;
+	border: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	height: fit-content;
+  }
+
+  .cancel-btn a{
+	  color: white;
+	  text-decoration: none;
+	  font-weight: bold;
+  }
+
+  .cancel-btn:hover{
+	box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 10px 0 rgba(0,0,0,0.19);
+  }
+
+  .cancel-btn a:hover {
+	color: white;
+  }
+
+  .msg-btn{
+	background-color: rgb(36, 180, 36);
+	border: none;
+	padding: 10px 10px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	height: fit-content;
+	font-weight: bold;
+  }

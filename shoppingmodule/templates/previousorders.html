@@ -16,20 +16,27 @@
             </ul>
         </div>
     </div>
-
+    {% if cancelmsg %}
+        <button class="msg-btn">
+            {{cancelmsg}}
+        </button>
+    {% endif %}
     <div class="wrapper1">
         <div class="topimg">
             <h1>Order history!</h1>
         </div>
         <div class="information">
             <table class="ordertable" style="border: 1px solid rgb(235, 230, 230);">
-                {% for item,ord in list %}
+                {% for item,ord in list reversed %}
                 <tr>
                     <td>
                         {% if ord.status == "pending" %}
+                            <button class="cancel-btn">
+                                <a href="/shoppingmodule/cancelorder?o={{ord.order_id}}">Cancel Order</a>
+                            </button><br><br>
                             <span class="reddot"></span><b>   {{ord.status}}</b><br><br>
                         {% else %}
-                            <span class="greendot"></span><b>{{ord.status}}</b><br><br>
+                            <span class="greendot"></span><b>   {{ord.status}}</b><br><br>
                         {% endif %}
                         <b>Order ID: </b>#GF0{{ord.order_id}}<br>
                         {% for i in item %}
