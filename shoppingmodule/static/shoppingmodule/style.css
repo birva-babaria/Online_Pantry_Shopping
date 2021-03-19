@@ -285,4 +285,79 @@ input[type=submit]
 {
 	margin-left: 20px;
 }
+.reddot {
+	height: 15px;
+	width: 15px;
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+  }
+  .greendot {
+	height: 15px;
+	width: 15px;
+	background-color: rgb(29, 236, 29);
+	border-radius: 50%;
+	display: inline-block;
+  }
 
+  .cancel-btn {
+	background-color: #4d4141;
+	border: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	height: fit-content;
+  }
+
+  .cancel-btn a{
+	  color: white;
+	  text-decoration: none;
+	  font-weight: bold;
+  }
+
+  .cancel-btn:hover{
+	box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 10px 0 rgba(0,0,0,0.19);
+  }
+
+  .cancel-btn a:hover {
+	color: white;
+  }
+
+  .msg-btn{
+	background-color: rgb(36, 180, 36);
+	border: none;
+	padding: 10px 10px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	height: fit-content;
+	font-weight: bold;
+  }
+
+  .fa-stack[data-count]:after{
+	position:absolute;
+	right:0%;
+	top:0%;
+	content: attr(data-count);
+	font-size:50%;
+	font-weight: bold;
+	padding:.6em;
+	border-radius:999px;
+	line-height:.75em;
+	color: black;
+	text-align:center;
+	min-width:1em;
+	font-weight:bold;
+	background: white;
+	border-style:solid;
+  }
+  .fa-circle {
+	color:black;
+  }
