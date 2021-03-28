@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
 from django.template.context_processors import csrf
 from shoppingmodule.models import product,shoppingcart,orderitems,order
 from loginmodule.models import customer
@@ -13,6 +14,9 @@ from django.utils import timezone
 
 def viewhome(request):
     prods = product.objects.all()
+    if 'cust_id' in request.session:
+        citems = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id'])).count()
+        request.session['cartitems'] = citems
     return render(request, 'home.html', {'prods': prods})
 
 def viewaboutus(request):
@@ -22,7 +26,7 @@ def addtocart(request):
     p_id = request.GET['p_id']
     c = shoppingcart(cart_cust_id=customer.objects.get(cust_id = request.session['cust_id']), cart_prod_id=product.objects.get(prod_id = p_id))
     c.save()
-    return HttpResponseRedirect('/shoppingmodule/viewcart/')
+    return HttpResponseRedirect('/shoppingmodule/')
 
 def viewcart(request):
     prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
@@ -127,9 +131,8 @@ def updatepassword(request):
     oldpass = request.POST['oldpass']
     newpass = request.POST['newpass']
     cnewpass = request.POST['cnewpass']
-    cust = customer.objects.get(cust_id=request.session['cust_id'])
-    currpass = cust.password
-    if(oldpass != currpass):
+    u = User.objects.get(username=request.session['cust_name'])
+    if not check_password(oldpass, u.password):
         return render(request, 'changepassword.html', {'msg': "*Old password is incorrect"})
     elif(newpass != cnewpass):
         return render(request, 'changepassword.html', {'msg': "*New passwords does not match"})

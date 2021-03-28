@@ -17,7 +17,7 @@ body
 /*--------navigation-------*/
 .navigation
 {
-	height: 50px;
+	height: 57px;
 	top: 0;
 	position: sticky;
 	background: black;
@@ -39,7 +39,7 @@ body
 .menu ul li
 {
 	border-left: 0.5px solid rgb(211, 204, 204);
-	height: 45px;
+	height: 55px;
 	list-style-type: none;
 	padding: 15px 35px;
 	text-align: center;
@@ -358,4 +358,25 @@ input[type=submit]
 	font-size: 16px;
 	height: fit-content;
 	font-weight: bold;
+  }
+
+  .fa-stack[data-count]:after{
+	position:absolute;
+	right:0%;
+	top:0%;
+	content: attr(data-count);
+	font-size:50%;
+	font-weight: bold;
+	padding:.6em;
+	border-radius:999px;
+	line-height:.75em;
+	color: black;
+	text-align:center;
+	min-width:1em;
+	font-weight:bold;
+	background: white;
+	border-style:solid;
+  }
+  .fa-circle {
+	color:black;
   }

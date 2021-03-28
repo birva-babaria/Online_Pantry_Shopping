@@ -10,7 +10,12 @@
                 {% if request.session.cust_id %}
                     <li>Welcome {{request.session.cust_name}},</li>
                     <li><a href="/shoppingmodule/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                    <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-cart"></i></a></li>
+                    <!-- <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-cart"></i></a></li> -->
+                    <li><a href="/shoppingmodule/viewcart/">
+                        <span class="fa-stack fa-1x has-badge" data-count="{{request.session.cartitems}}">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse" style="font-size:20px"></i>
+                    </span></a></li>
                     <li><a href="/loginmodule/logout/">Logout</a></li>
                     <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
                 {% else %}

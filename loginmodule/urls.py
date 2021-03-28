@@ -11,4 +11,21 @@ urlpatterns = [
     url(r'^logout/$', logout),
     url(r'^loggedin/$', loggedin),
     url(r'^invalidlogin/$', invalidlogin),
+
+    #reset password urls
+    path('reset_password/',
+    auth_views.PasswordResetView.as_view(template_name = 'passwordreset.html'),
+    name='reset_password'),
+
+    path('reset_password_sent/',
+    auth_views.PasswordResetDoneView.as_view(template_name = 'passwordresetsent.html'),
+    name='password_reset_done'),
+
+    path('reset/<uidb64>/<token>/',
+    auth_views.PasswordResetConfirmView.as_view(template_name = 'resetpasswordform.html'),
+    name='password_reset_confirm'),
+
+    path('reset_password_complete/',
+    auth_views.PasswordResetCompleteView.as_view(template_name = 'resetpasswordcomplete.html'),
+    name='password_reset_complete'),
 ]

@@ -19,6 +19,8 @@ def auth_view(request):
     if user is not None:
         auth.login(request, user)
         c = customer.objects.get(username=request.POST['username'])
+        c.password = password
+        c.save()
         request.session['cust_id'] = c.cust_id
         request.session['cust_name'] = c.username
         return HttpResponseRedirect('/shoppingmodule/')
@@ -36,12 +38,12 @@ def register(request):
     address = request.POST.get('address', '')
     if(password != cpassword):
         return render(request, 'register.html', {'msg': "*Passwords doesn't match"})
-    newuser = customer.objects.get(username=username)
+    newuser = customer.objects.filter(username=username).first()
     if newuser is not None:
         return render(request, 'register.html', {'msg': "*username already taken"})
     cust = customer(username = username, address = address, email = email, password = password)
     cust.save()
-    user = User.objects.create_user(username = username, password = password)
+    user = User.objects.create_user(username = username, email = email, password = password)
     return HttpResponseRedirect('/loginmodule/login/')
 
 def loggedin(request):
