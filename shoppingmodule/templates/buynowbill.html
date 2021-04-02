@@ -4,18 +4,18 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!------------------navigation-------------------->
     <div class="navigation">
-        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <a href="/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
         <div class="menu">
             <ul>
                 {% if request.session.cust_id %}
                     <li>Welcome {{request.session.cust_name}},</li>
-                    <li><a href="/shoppingmodule/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li><a href="/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <li><a href="/loginmodule/logout/">Logout</a></li>
-                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                    <li><a href="/viewaboutus/">About Us</a></li>
                 {% else %}
                     <li><a href="/loginmodule/login/">Login</a></li>
                     <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
-                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                    <li><a href="/viewaboutus/">About Us</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -37,7 +37,7 @@
     <b><h5>Tax: </b>₹{{TAX}}</h5>
     <b><h4>Subtotal: </b>₹{{subtotal}}</h4><br>
     <button class="w3-button w3-black w3-round w3-block">
-        <a  class="line" href="/shoppingmodule/confirmorderb?p_id={{prod.prod_id}}">Confirm Order</i></a>
+        <a  class="line" href="/confirmorderb?p_id={{prod.prod_id}}">Confirm Order</i></a>
     </button>
 </div>
 {% endblock %}

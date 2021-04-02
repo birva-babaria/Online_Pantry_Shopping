@@ -4,24 +4,24 @@
 
     <!------------------navigation-------------------->
     <div class="navigation">
-        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <a href="/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
         <div class="menu">
             <ul>
                 {% if request.session.cust_id %}
                     <li>Welcome {{request.session.cust_name}},</li>
-                    <li><a href="/shoppingmodule/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li><a href="/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <!-- <li><a href="/shoppingmodule/viewcart/"><i class="fa fa-shopping-cart"></i></a></li> -->
-                    <li><a href="/shoppingmodule/viewcart/">
+                    <li><a href="/viewcart/">
                         <span class="fa-stack fa-1x has-badge" data-count="{{request.session.cartitems}}">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-shopping-cart fa-stack-1x fa-inverse" style="font-size:20px"></i>
                     </span></a></li>
                     <li><a href="/loginmodule/logout/">Logout</a></li>
-                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                    <li><a href="/viewaboutus/">About Us</a></li>
                 {% else %}
                     <li><a href="/loginmodule/login/">Login</a></li>
                     <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
-                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                    <li><a href="/viewaboutus/">About Us</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -53,11 +53,11 @@
                         <img src="{% static prod.image %}">
                         {% if request.session.cust_id %}
                             <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Buy now">
-                                <a href="/shoppingmodule/buynow?p_id={{prod.prod_id}}"><i class="fa fa-shopping-bag"></i></a>
+                                <a href="/buynow?p_id={{prod.prod_id}}"><i class="fa fa-shopping-bag"></i></a>
                             </button>
                             
                             <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Add to cart">
-                                <a href="/shoppingmodule/addtocart?p_id={{prod.prod_id}}"><i class="fa fa-shopping-cart"></i></a>
+                                <a href="/addtocart?p_id={{prod.prod_id}}"><i class="fa fa-shopping-cart"></i></a>
                             </button>
                         {% else %}
                             <button style="float: left; margin: 5px 5px;" type="button" class="btn btn-secondary" title="Buy now">

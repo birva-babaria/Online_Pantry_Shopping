@@ -26,7 +26,7 @@ def addtocart(request):
     p_id = request.GET['p_id']
     c = shoppingcart(cart_cust_id=customer.objects.get(cust_id = request.session['cust_id']), cart_prod_id=product.objects.get(prod_id = p_id))
     c.save()
-    return HttpResponseRedirect('/shoppingmodule/')
+    return HttpResponseRedirect('/')
 
 def viewcart(request):
     prods = shoppingcart.objects.all().filter(cart_cust_id = customer.objects.get(cust_id = request.session['cust_id']))
@@ -41,7 +41,7 @@ def removefromcart(request):
     c_id = request.GET['c_id']
     prod = shoppingcart.objects.get(cart_id = c_id)
     prod.delete()
-    return HttpResponseRedirect('/shoppingmodule/viewcart/')
+    return HttpResponseRedirect('/viewcart/')
 
 def buynow(request):
     p_id = request.GET['p_id']
@@ -91,7 +91,7 @@ def confirmorder(request):
         o_item.save()
     for prod in prods:
         prod.delete()
-    return HttpResponseRedirect('/shoppingmodule/viewconfirmorder/')
+    return HttpResponseRedirect('/viewconfirmorder/')
 
 def confirmorderb(request):
     p_id = request.GET['p_id']
@@ -102,16 +102,29 @@ def confirmorderb(request):
     ord = order.objects.latest('order_id')
     o_item = orderitems(orderitems_order_id=ord, orderitems_prod_id=prod)
     o_item.save() 
-    return HttpResponseRedirect('/shoppingmodule/viewconfirmorder/')
+    return HttpResponseRedirect('/viewconfirmorder/')
     
 def viewconfirmorder(request):
     return render(request, 'confirmorder.html')
 
 def viewprofile(request):
     cust = customer.objects.get(cust_id = request.session['cust_id'])
-    context = {
-        'cust': cust
-    }
+    if 'passwordchanged' in request.session:
+        context = {
+            'cust': cust,
+            'passwordchanged': "Password changed successfully"
+        }
+        del request.session['passwordchanged']
+    elif 'addresschanged' in request.session:
+        context = {
+            'cust': cust,
+            'addresschanged': "Address changed successfully"
+        }
+        del request.session['addresschanged']
+    else:
+        context = {
+            'cust': cust
+        }
     return render(request, 'profile.html', context)
 
 def changeaddress(request):
@@ -122,7 +135,8 @@ def addnewaddress(request):
     cust = customer.objects.get(cust_id = request.session['cust_id'])
     cust.address = addr
     cust.save()
-    return HttpResponseRedirect('/shoppingmodule/viewprofile/')
+    request.session['addresschanged'] = "Address changed successfully"
+    return HttpResponseRedirect('/viewprofile/')
 
 def changepassword(request):
     return render(request, 'changepassword.html')
@@ -143,7 +157,8 @@ def updatepassword(request):
         cust = customer.objects.get(cust_id=request.session['cust_id'])
         cust.password = newpass
         cust.save()
-        return HttpResponseRedirect('/shoppingmodule/viewprofile/')
+        request.session['passwordchanged'] = "Password changed successfully"
+        return HttpResponseRedirect('/viewprofile/')
 
 def vieworders(request):
     ords = order.objects.all().filter(order_cust_id=customer.objects.get(cust_id=request.session['cust_id']))
@@ -176,4 +191,4 @@ def cancelorder(request):
         o.delete()
     ord.delete()
     request.session['cancel'] = "cancelled"
-    return HttpResponseRedirect('/shoppingmodule/vieworders/')
+    return HttpResponseRedirect('/vieworders/')

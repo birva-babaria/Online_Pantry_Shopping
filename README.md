@@ -12,6 +12,7 @@ Django
 
 <ul>
   <li>Login and Registration system is available. </li>
+  <li>User can use reset password functionality in case if he/she forgets the password. </li>
   <li>The authentication of the user would be checked before logging in. </li>
   <li>User can logout from application if required. </li>
   <li>User can change shipping address, password within thier profile. </li>
@@ -20,4 +21,5 @@ Django
   <li>Product added in the cart can be removed if required. </li>
   <li>Bill would be generated after placing order thenafter order can be confirmed. </li>
   <li>Previous orders and their status would be shown in profile section. </li>
+  <li>Pending orders can be cancelled by customer if required. </li>
 </ul>

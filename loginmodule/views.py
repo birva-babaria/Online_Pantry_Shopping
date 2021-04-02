@@ -23,7 +23,7 @@ def auth_view(request):
         c.save()
         request.session['cust_id'] = c.cust_id
         request.session['cust_name'] = c.username
-        return HttpResponseRedirect('/shoppingmodule/')
+        return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/loginmodule/invalidlogin/')
 

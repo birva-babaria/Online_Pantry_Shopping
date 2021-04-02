@@ -4,28 +4,28 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!------------------navigation-------------------->
     <div class="navigation">
-        <a href="/shoppingmodule/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
+        <a href="/"><img class="logo" src="{% static 'shoppingmodule/images/logo.png' %}" width="80" height="40"></a>
         <div class="menu">
             <ul>
                 {% if request.session.cust_id %}
                     <li>Welcome {{request.session.cust_name}},</li>
-                    <li><a href="/shoppingmodule/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li><a href="/viewprofile/"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <li><a href="/loginmodule/logout/">Logout</a></li>
-                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                    <li><a href="/viewaboutus/">About Us</a></li>
                 {% else %}
                     <li><a href="/loginmodule/login/">Login</a></li>
                     <li><a href="/loginmodule/registeruser/">Sign Up</a></li>
-                    <li><a href="/shoppingmodule/viewaboutus/">About Us</a></li>
+                    <li><a href="/viewaboutus/">About Us</a></li>
                 {% endif %}
             </ul>
         </div>
     </div>
 <br>
 <h1>Your order is confirmed :)</h1>
-<h5>Please check <a href="/shoppingmodule/vieworders/">your orders</a> for more information.</h5>
+<h5>Please check <a href="/vieworders/">your orders</a> for more information.</h5>
 <br>
 <img  width="300" height="300" src="{% static 'shoppingmodule/images/confirmorder.png' %}">
 <br><br>
-<h4>Click <a href="/shoppingmodule/">here</a> to continue shopping :)</h4>
+<h4>Click <a href="/">here</a> to continue shopping :)</h4>
 </div>
 {% endblock %}
